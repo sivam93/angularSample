@@ -1,0 +1,45 @@
+<h2>Single File Upload</h2>
+
+<input type="file" class="file-input" (change)="onChange($event)">
+
+<div *ngIf="file" class="file-section">
+  <section>
+    File details:
+    <ul>
+      <li>Name: {{file.name}}</li>
+      <li>Type: {{file.type}}</li>
+      <li>Size: {{file.size}} bytes</li>
+    </ul>
+  </section>
+
+  <select  [(value)]="selectedValue">
+    <option value="defaultSort"> bubble Sort</option>
+    <option value="mergeSort"> merge Sort</option>
+    <option value="heapSort"> heap Sort</option>
+    </select>
+
+  <button (click)="onUpload()" class="upload-button">Upload Sort</button>
+  <button (click)="onUploadSave()" class="upload-button">Upload SortANDSAVE</button>
+
+  <section [ngSwitch]="status">
+    <p *ngSwitchCase="'uploading'">⏳ Uploading...</p>
+    <p *ngSwitchCase="'success'">✅ Done!</p>
+    <p *ngSwitchCase="'fail'">❌ Error!</p>
+    <p *ngSwitchDefault>😶 Waiting to upload...</p>
+  </section>
+  <div *ngIf="dataRetrived">
+    <table>
+        <tr>
+            <th>name</th>
+            <th>id</th>
+            <th>perf</th>
+        </tr>
+        <tr *ngFor="let p of detail">
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.performance}}</td>
+        </tr>
+    </table>
+  </div>
+  <div>Time taken {{timeTaken}} ms</div>
+</div>
